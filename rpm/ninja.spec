@@ -1,14 +1,14 @@
 Name:           ninja
-Version:        1.10.0
+Version:        1.10.1
 Release:        1
 Summary:        Small build system with a focus on speed
 License:        ASL 2.0
 Url:            https://ninja-build.org/
-Source0:        %{name}-%{version}.tar.gz
+Source0:        %{name}-%{version}.tar.bz2
 Source1:        macros.ninja
 BuildRequires:  gcc-c++
 BuildRequires:  python3-base
-BuildRequires:  re2c
+BuildRequires:  re2c >= 0.11.3
 
 %description
 Ninja is a small build system with a focus on speed. It differs from other
