@@ -1,5 +1,5 @@
 Name:           ninja
-Version:        1.10.1
+Version:        1.10.2
 Release:        1
 Summary:        Small build system with a focus on speed
 License:        ASL 2.0
