@@ -6,6 +6,7 @@ License:        ASL 2.0
 Url:            https://ninja-build.org/
 Source0:        %{name}-%{version}.tar.bz2
 Source1:        macros.ninja
+Patch1:         0001-LFS-fix.patch
 BuildRequires:  gcc-c++
 BuildRequires:  python3-base
 BuildRequires:  re2c >= 0.11.3
