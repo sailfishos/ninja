@@ -11,6 +11,7 @@ Patch2:         0001-Disable-tests-that-fail-with-qemu-JB-44353.patch
 BuildRequires:  gcc-c++
 BuildRequires:  python3-base
 BuildRequires:  re2c >= 0.11.3
+BuildRequires:  libstdc++-devel
 
 %description
 Ninja is a small build system with a focus on speed. It differs from other
