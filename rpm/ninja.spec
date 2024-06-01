@@ -1,14 +1,16 @@
 Name:           ninja
-Version:        1.10.2
+Version:        1.12.1
 Release:        1
 Summary:        Small build system with a focus on speed
 License:        ASL 2.0
 Url:            https://ninja-build.org/
 Source0:        %{name}-%{version}.tar.bz2
 Source1:        macros.ninja
-Patch1:         0001-LFS-fix.patch
-Patch2:         0001-Disable-tests-that-fail-with-qemu-JB-44353.patch
+Patch1:         0001-Disable-tests-that-fail-with-qemu-JB-44353.patch
 BuildRequires:  gcc-c++
+BuildRequires:  cmake
+BuildRequires:  gmock
+BuildRequires:  gtest-devel
 BuildRequires:  python3-base
 BuildRequires:  re2c >= 0.11.3
 BuildRequires:  libstdc++-devel
@@ -24,19 +26,21 @@ fast as possible.
 
 %build
 export CFLAGS="%{optflags}"
+%if "%__isa_bits" == "32"
+CFLAGS="$CFLAGS -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64"
+%endif
 export CXXFLAGS="%{optflags}"
-python3 ./configure.py --bootstrap --verbose
+%cmake
+%cmake_build
 
 %install
 install -D -p -m 0755 ninja %{buildroot}%{_bindir}/ninja
 install -D -p -m 0644 %{SOURCE1} %{buildroot}%{_sysconfdir}/rpm/macros.ninja
 
 %check
-./ninja ninja_test
-./ninja_test
+%ctest
 
 %files
-%defattr(-,root,root,-)
 %license COPYING
 %{_bindir}/ninja
 %{_sysconfdir}/rpm/macros.ninja
