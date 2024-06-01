@@ -35,7 +35,7 @@ export CXXFLAGS="%{optflags}"
 
 %install
 install -D -p -m 0755 ninja %{buildroot}%{_bindir}/ninja
-install -D -p -m 0644 %{SOURCE1} %{buildroot}%{_sysconfdir}/rpm/macros.ninja
+install -D -p -m 0644 %{SOURCE1} %{buildroot}%{_rpmmacrodir}/macros.ninja
 
 %check
 %ctest
@@ -43,4 +43,4 @@ install -D -p -m 0644 %{SOURCE1} %{buildroot}%{_sysconfdir}/rpm/macros.ninja
 %files
 %license COPYING
 %{_bindir}/ninja
-%{_sysconfdir}/rpm/macros.ninja
+%{_rpmmacrodir}/macros.ninja
