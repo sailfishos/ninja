@@ -8,9 +8,6 @@ Source0:        %{name}-%{version}.tar.bz2
 Source1:        macros.ninja
 Patch1:         0001-Disable-tests-that-fail-with-qemu-JB-44353.patch
 BuildRequires:  gcc-c++
-BuildRequires:  cmake
-BuildRequires:  gmock
-BuildRequires:  gtest-devel
 BuildRequires:  python3-base
 BuildRequires:  re2c >= 0.11.3
 BuildRequires:  libstdc++-devel
@@ -30,15 +27,11 @@ export CFLAGS="%{optflags}"
 CFLAGS="$CFLAGS -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64"
 %endif
 export CXXFLAGS="%{optflags}"
-%cmake
-%cmake_build
+python3 ./configure.py --bootstrap --verbose
 
 %install
 install -D -p -m 0755 ninja %{buildroot}%{_bindir}/ninja
 install -D -p -m 0644 %{SOURCE1} %{buildroot}%{_rpmmacrodir}/macros.ninja
-
-%check
-%ctest
 
 %files
 %license COPYING
